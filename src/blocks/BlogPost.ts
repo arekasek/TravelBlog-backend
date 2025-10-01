@@ -8,6 +8,12 @@ const BlogPost: Block = {
   },
   fields: [
     {
+      name: "slug",
+      label: "Slug",
+      type: "text",
+      required: true,
+    },
+    {
       name: "heading",
       label: "Heading",
       type: "text",
@@ -16,7 +22,7 @@ const BlogPost: Block = {
     {
       name: "text",
       label: "Text",
-      type: "textarea",
+      type: "text",
     },
     {
       name: "image",
@@ -26,19 +32,9 @@ const BlogPost: Block = {
       required: true,
     },
     {
-      name: "direction",
-      label: "Direction",
-      type: "select",
-      options: [
-        {
-          label: "Default",
-          value: "default",
-        },
-        {
-          label: "Reverse",
-          value: "reverse",
-        },
-      ],
+      name: "sign",
+      label: "Sign",
+      type: "text",
     },
   ],
 };

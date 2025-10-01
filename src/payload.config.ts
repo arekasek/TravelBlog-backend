@@ -12,7 +12,6 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import Footer from "./globals/Footer";
 import Header from "./globals/Header";
 import Sidebar from "./globals/Sidebar";
-import BlogPosts from "./blocks/BlogPosts";
 
 const mockModulePath = path.resolve(__dirname, "emptyFunction.js");
 export default buildConfig({
@@ -34,7 +33,7 @@ export default buildConfig({
     }),
   },
   editor: lexicalEditor({}),
-  collections: [Users, Media, Pages, BlogPosts],
+  collections: [Users, Media, Pages],
   globals: [Header, Footer, Sidebar],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),

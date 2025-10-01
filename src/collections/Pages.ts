@@ -2,30 +2,30 @@ import SimpleRichText from "../blocks/SimpleRichText";
 import PricingBlock from "../blocks/PricingBlock";
 import BlogPost from "../blocks/BlogPost";
 import { CollectionConfig } from "payload/types";
-import TwoColumnBlogBlock from "../blocks/TwoColumnBlogBlock";
 import MainBlock from "../blocks/MainBlock";
+import BlogContainer from "../blocks/BlogContainer";
+import BlogTemplate from "../blocks/BlogTemplate";
 
 const Pages: CollectionConfig = {
   slug: "pages",
-  labels: {
-    singular: "Page",
-    plural: "Pages",
-  },
-  access: {
-    read: () => true,
-  },
+  labels: { singular: "Page", plural: "Pages" },
+  access: { read: () => true },
   fields: [
+    { name: "name", label: "Name", type: "text", required: true },
+    { name: "slug", label: "Slug", type: "text", required: true },
     {
-      name: "name",
-      label: "Name",
-      type: "text",
+      name: "pageType",
+      label: "Page Type",
+      type: "select",
       required: true,
-    },
-    {
-      name: "slug",
-      label: "Slug",
-      type: "text",
-      required: true,
+      defaultValue: "standard",
+      options: [
+        { label: "Standard Page", value: "standard" },
+        { label: "Blog Page", value: "blog" },
+      ],
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "layout",
@@ -35,9 +35,21 @@ const Pages: CollectionConfig = {
         PricingBlock,
         BlogPost,
         SimpleRichText,
-        TwoColumnBlogBlock,
         MainBlock,
+        BlogContainer,
       ],
+      admin: {
+        condition: (data) => data.pageType === "standard",
+      },
+    },
+    {
+      name: "blogLayout",
+      label: "Blog Layout",
+      type: "blocks",
+      blocks: [BlogTemplate],
+      admin: {
+        condition: (data) => data.pageType === "blog",
+      },
     },
   ],
 };
